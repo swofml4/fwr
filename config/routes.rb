@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post 'simulation/dice_roll'
   get 'simulation/grid'
   get 'simulation/make_army'
+  get 'simulation/one_simulation'
+  post 'simulation/one_simulation'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :unit_attribute_types

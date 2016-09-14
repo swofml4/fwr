@@ -1,7 +1,7 @@
 require 'dice_roller'
 class SimulationController < ApplicationController
   def index
-  	@simulations = Simulation.all
+  	@simulations = Simulation.all.order(id: :desc)
   end
 
   def dice_roll
@@ -23,6 +23,16 @@ class SimulationController < ApplicationController
   	sim_backend.next_turn()
   	sim_backend.next_turn()
   	redirect_to simulation_grid_path, notice: 'Simulation with armies was successfully updated.'
+  end
+
+  def one_simulation
+  	@points = 200
+  	if !params[:points].nil? 
+  		sim_backend = SimulationBackend.new
+  		sim_backend.pick_armies(params[:points].to_i)
+  		sim_backend.next_turn()
+  		redirect_to simulation_index_path, notice: 'Simulation with armies was successfully created.'
+  	end
   end
   
 end

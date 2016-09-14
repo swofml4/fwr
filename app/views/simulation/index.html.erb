@@ -16,9 +16,14 @@
 				</div>
 				<div class="hidden2">
 					<% sim_turn.sim_armies.each do |sim_army| %>
+					<!-- pretty sure this is a huge sin. ill move it down to the controller at some point -->
+						<% army_points = 0 %>
+						<% sim_army.sim_units.each do |sim_unit| %>
+							<% army_points += sim_unit.unit.cost %>
+						<% end %>
 						<div class="row">
 							<div class="col-sm-2 col-xs-3">
-								<b>&emsp;<%= sim_army.army.name %></b>
+								<b>&emsp;<%= sim_army.army.name + ' (' + army_points.to_s + ')'%></b>
 							</div>
 							<div class="col-sm-2 col-xs-3"><b>Unit</b></div>
 							<div class="col-sm-2 col-xs-3"><b>Status</b></div>
@@ -26,7 +31,7 @@
 						</div>
 						<% sim_army.sim_units.each do |sim_unit| %>
 							<div class="row">
-								<div class="col-sm-2 col-xs-3 text-center"><%= 'cost:' + sim_unit.unit.cost.to_s %></div>
+								<div class="col-sm-2 col-xs-3">&emsp;&emsp;<%= 'points: ' + sim_unit.unit.cost.to_s %></div>
 								<div class="col-sm-2 col-xs-3"><%= sim_unit.unit.name %></div>
 							</div>
 						<% end %>

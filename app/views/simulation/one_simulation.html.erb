@@ -1,0 +1,13 @@
+<h1>Build me an Army Worthy of Mordor</h1>
+
+<div class="row">
+	<%= form_tag '/simulation/one_simulation' do %>
+		<div class="col-md-3">
+			<%= label_tag 'points', nil, class: 'control-label integer optional' %>
+			<%= number_field_tag 'points', @points, class: 'form-control numeric integer optional' %>
+		</div>
+		<div class="col-md-12">
+			<%= submit_tag 'Roll', class: 'btn btn-default' %>
+		</div>
+	<% end %>
+</div>
