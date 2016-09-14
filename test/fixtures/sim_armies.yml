@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  army_id: 1
+  simulation_id: 1
+  starting_unit_count: 1
+  status: MyString
+
+two:
+  army_id: 1
+  simulation_id: 1
+  starting_unit_count: 1
+  status: MyString

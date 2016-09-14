@@ -1,0 +1,26 @@
+<p>
+  Unit attribute types provide an atomic adjustment. One or more of these gets combined into gear or special abilities. For gear or abilities with only one atomic adjustment, this is a bit of a pain in the ass, but it makes coding the multi adjustment ones so much cleaner. Each attribute can be countered by zero or one other attribute. Selecting the placeholder attribute of N/A for the negation means this attribute cannot be countered/negated.
+</p>
+<p>
+  Not yet done, but I will code an exact phrasing structure to these adjustments so I can parse them in code. I will probably do a regex match, but I may do simple string matches.
+</p>
+
+<%= simple_form_for(unit_attribute_type) do |f| %>
+  <% options = options_from_collection_for_select(@unit_attribute_types, 'id', 'name', f.object.negated_by_unit_attribute_type_id) %>
+  <div class="row">
+      <div class="col-lg-2 col-sm-3 col-xs-6"><%= f.input :name %></div>
+      <div class="col-lg-4 col-sm-5 col-xs-12"><%= f.input :rule %></div>
+      <div class="col-lg-1 col-sm-2 col-xs-6"><%= f.input :adjustment %></div>
+      <div class="col-sm-2">
+        <b>Negated by</b><br>
+        <%= f.select :negated_by_unit_attribute_type_id, options %><br>
+        *select N/A if it cannot be negated
+      </div>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-default' %>
+  </div>
+<% end %>
+<h3>Valid rule structures:</h3>
+<p>TODO</p>

@@ -1,0 +1,12 @@
+<p>
+  <strong>Name:</strong>
+  <%= @unit_type.name %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @unit_type.size %>
+</p>
+
+<%= link_to 'Edit', edit_unit_type_path(@unit_type) %> |
+<%= link_to 'Back', unit_types_path %>

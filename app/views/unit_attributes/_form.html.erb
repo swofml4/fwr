@@ -1,0 +1,30 @@
+<%= simple_form_for(unit_attribute) do |f| %>
+  <div class="row">
+    <div class="col-md-3 col-sm-6"><%= f.input :name %></div>
+    <div class="col-md-8 col-sm-12"><%= f.input :description %></div>
+  </div>
+  <p>
+    Attributes are held separate from the piece of equipment or special ability for two key reasons:
+    <ul>
+      <li>They allow a piece of equipment or special ability to have multiple characteristics, such as:</li>
+        <ul>
+          <li>A high powered crossbow could provide a ranged attack and a piecing damage modifier.</li>
+          <li>A shield could give a bonus vs ranged and a special ability in melee where they defend for a bonus but cannot attack if they win the fight.</li>
+        </ul>
+      <li>Each bonus can have separate negations or one bonus could be negated while another cannot. E.g. Troll hide might provide a bonus to toughness and some type of regeneration. Perhaps the regeneration is countered by fire, but they still have the additional toughness.</li>
+    </ul>
+    Like this approach or not, when looking through v3 rules, there were too many instances where things had stacked characteristics, and parsing them without a nested data structure would be a total fustercluck.
+  </p>
+  <div class="row">
+    <div class="col-md-3 col-sm-4 col-xs-4">
+      <%= link_to "+/- Attributes", 'javascript:void(0)', class: "toggle_hide" %>
+    </div>
+    <div class="col-md-6 col-sm-8 col-xs-8">
+      <%= f.association :unit_attribute_types, as: :check_boxes, label: 'Attributes' %>
+    </div>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

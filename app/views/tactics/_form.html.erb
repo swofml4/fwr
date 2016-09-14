@@ -1,0 +1,16 @@
+<%= simple_form_for(@tactic) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+	  <div class="row">
+	      <div class="col-md-6"><%= f.input :title %></div>
+	  </div>
+	  <div class="row">
+	      <div class="col-md-6"><%= f.input :description %></div>
+	  </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

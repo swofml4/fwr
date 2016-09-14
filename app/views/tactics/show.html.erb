@@ -1,0 +1,12 @@
+<p>
+  <strong>Title:</strong>
+  <%= @tactic.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tactic.description %>
+</p>
+
+<%= link_to 'Edit', edit_tactic_path(@tactic) %> |
+<%= link_to 'Back', tactics_path %>

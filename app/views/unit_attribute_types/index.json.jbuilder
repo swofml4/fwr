@@ -1,0 +1,1 @@
+json.array! @unit_attribute_types, partial: 'unit_attribute_types/unit_attribute_type', as: :unit_attribute_type

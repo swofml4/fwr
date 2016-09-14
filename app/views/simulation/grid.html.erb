@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-1">
+			<% for i in 1..5 %>
+				<div class="row">
+				<% for j in 1..5 %>
+					<div class="col-md-1 small-square" ondrop="drop(event)" ondragover="allowDrop(event)" id=<%= i.to_s + '-' + j.to_s %>>
+						<%= i.to_s + ', ' + j.to_s %>
+					</div>
+				<% end %>
+				</div>
+			<% end %>
+	</div>
+	<div class="col-md-2">
+		<table>
+			<tr><td>Img1:</td><td id="ze image-dash"></td></tr>
+			<tr><td>Img2:</td><td id="ze image2-dash"></td></tr>
+		</table>
+		<img id="ze image" src="/assets/Money.png" draggable="true" ondragstart="drag(event)">
+		<img id="ze image2" src="/assets/Money.png" draggable="true" ondragstart="drag(event)">
+	</div>
+</div>
+<br>

@@ -1,0 +1,12 @@
+<p>
+  <strong>Name:</strong>
+  <%= @unit_attribute.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @unit_attribute.description %>
+</p>
+
+<%= link_to 'Edit', edit_unit_attribute_path(@unit_attribute) %> |
+<%= link_to 'Back', unit_attributes_path %>

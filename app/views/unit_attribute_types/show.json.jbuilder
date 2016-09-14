@@ -1,0 +1,1 @@
+json.partial! "unit_attribute_types/unit_attribute_type", unit_attribute_type: @unit_attribute_type

@@ -1,0 +1,44 @@
+<h1>Roll Some Dice</h1>
+
+<div class="row">
+	<%= form_tag '/simulation/dice_roll' do %>
+		<div class="col-md-3">
+			<%= label_tag 'dice', nil, class: 'control-label integer optional' %>
+			<%= number_field_tag 'dice', @dice, class: 'form-control numeric integer optional' %>
+		</div>
+		<div class="col-md-3">
+			<%= label_tag 'advantage', 'advantage/(disadvantage in negative)', class: 'control-label integer optional' %>
+			<%= number_field_tag 'advantage', @advantage, class: 'form-control numeric integer optional' %>
+		</div>
+		<div class="col-md-12">
+			<%= submit_tag 'Roll', class: 'btn btn-default' %>
+		</div>
+	<% end %>
+</div>
+
+<% if !@dice_rolls.nil? %>
+	<h3>Dice Rolls</h3>
+	<% @dice_rolls[:dice_rolls].each do |roll| %>
+		<% if roll < 10 %>
+			<button type="button" class="btn btn-default">&nbsp;<%= roll %>&nbsp;</button>
+		<% else %>
+			<button type="button" class="btn btn-default"><%= roll %></button>
+		<% end %>
+	<% end %>
+
+	<% if @dice_rolls[:advantage] != 0 %>
+		<h3>Dice Roll Rejects</h3>
+		<% if @dice_rolls[:advantage] > 0 %>
+			<h6>Due to Advantage <%= @dice_rolls[:advantage] %></h6>
+		<% else %>
+			<h6>Due to Disadvantage <%= @dice_rolls[:advantage].abs %></h6>
+		<% end %>
+		<% @dice_rolls[:rejected_rolls].each do |roll| %>
+			<% if roll < 10 %>
+				<button type="button" class="btn btn-default">&nbsp;<%= roll %>&nbsp;</button>
+			<% else %>
+				<button type="button" class="btn btn-default"><%= roll %></button>
+			<% end %>
+		<% end %>
+	<% end %>
+<% end %>

@@ -1,0 +1,35 @@
+
+
+<h1>Unit Attribute Types</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Rule</th>
+      <th>Adjustment</th>
+      <th>Negated by unit attribute type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @unit_attribute_types.each do |unit_attribute_type| %>
+      <tr>
+        <td><%= unit_attribute_type.name %></td>
+        <td><%= unit_attribute_type.rule %></td>
+        <td><%= unit_attribute_type.adjustment %></td>
+        <!-- need to fix with try -->
+        <% negated_by = @unit_attribute_types.find_by_id(unit_attribute_type.negated_by_unit_attribute_type_id) %>
+        <td><%= if !negated_by.nil? then negated_by.name end %></td>
+        <td><%= link_to 'Show', unit_attribute_type %></td>
+        <td><%= link_to 'Edit', edit_unit_attribute_type_path(unit_attribute_type) %></td>
+        <td><%= link_to 'Destroy', unit_attribute_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Unit Attribute Type', new_unit_attribute_type_path %>

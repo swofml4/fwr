@@ -1,0 +1,30 @@
+<fieldset class="fieldset-noborder">
+	<% options = options_from_collection_for_select(@unit_types, 'id', 'name') %>
+	<div class="row">
+		<div class="col-md-2 col-sm-3 col-xs-10"><%= f.input :name %></div>
+		<div class="col-md-2 col-sm-3 col-xs-12">
+			<label class="control-label string optional">Unit Type</label>
+	        <%= f.select :unit_type_id, options, html: {:class => "form-control string optional"} %>
+		</div>
+		<div class="col-lg-1 col-md-2 col-xs-3"><%= f.input :quality%></div>
+		<div class="col-lg-1 col-md-2 col-xs-3"><%= f.input :resilience %></div>
+		<div class="col-lg-1 col-md-2 col-xs-3"><%= f.input :strength %></div>
+		<div class="col-lg-1 col-md-2 col-xs-3"><%= f.input :hp, label: 'Hit Points' %></div>
+		<div class="col-lg-1 col-md-2 col-xs-3"><%= f.input :cost %></div>
+		<div class="col-md-2">
+			<br>
+			<%= f.hidden_field :_destroy %>
+			<%= link_to "Remove", 'javascript:void(0)', class: "remove_fields" %><br>
+			
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-3 col-sm-4 col-xs-4">
+			<%= link_to "+/- Equipment & Specials", 'javascript:void(0)', class: "toggle_hide" %>
+		</div>
+		<div class="col-md-6 col-sm-8 col-xs-8 hidden2">
+			<%= f.association :unit_attributes, as: :check_boxes, label: 'Equipment & Special Abilities' %>
+		</div>
+	</div>
+</fieldset>

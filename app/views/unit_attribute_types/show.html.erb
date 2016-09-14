@@ -1,0 +1,24 @@
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @unit_attribute_type.name %>
+</p>
+
+<p>
+  <strong>Rule:</strong>
+  <%= @unit_attribute_type.rule %>
+</p>
+
+<p>
+  <strong>Adjustment:</strong>
+  <%= @unit_attribute_type.adjustment %>
+</p>
+
+<p>
+  <strong>Negated by unit attribute type:</strong>
+  <%= @unit_attribute_type.negated_by_unit_attribute_type_id %>
+</p>
+
+<%= link_to 'Edit', edit_unit_attribute_type_path(@unit_attribute_type) %> |
+<%= link_to 'Back', unit_attribute_types_path %>

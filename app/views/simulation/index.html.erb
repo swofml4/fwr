@@ -1,0 +1,42 @@
+<h1>Simulations</h1>
+
+<div class="table">
+	<% @simulations.each do |simulation| %>
+		<div class="row">
+			<div class="col-sm-2 col-xs-3"><b><%= 'simulation ' + simulation.id.to_s %></b></div>
+			<div class="col-sm-2 col-xs-3">
+				<%= link_to "+/- Turns", 'javascript:void(0)', class: "toggle_hide_pps" %>
+			</div>
+		</div>
+		<div class="hidden2">
+			<% simulation.sim_turns.each do |sim_turn| %>
+				<div class="row">
+					<div class="col-sm-2 col-xs-3"><b><%= 'turn ' + sim_turn.turn_count.to_s %></b></div>
+					<div class="col-sm-2 col-xs-3"><%= link_to "+/- Armies", 'javascript:void(0)', class: "toggle_hide_pps" %></div>
+				</div>
+				<div class="hidden2">
+					<% sim_turn.sim_armies.each do |sim_army| %>
+						<div class="row">
+							<div class="col-sm-2 col-xs-3">
+								<b>&emsp;<%= sim_army.army.name %></b>
+							</div>
+							<div class="col-sm-2 col-xs-3"><b>Unit</b></div>
+							<div class="col-sm-2 col-xs-3"><b>Status</b></div>
+							<div class="col-sm-2 col-xs-3"><b>Position</b></div>
+						</div>
+						<% sim_army.sim_units.each do |sim_unit| %>
+							<div class="row">
+								<div class="col-sm-2 col-xs-3 text-center"><%= 'cost:' + sim_unit.unit.cost.to_s %></div>
+								<div class="col-sm-2 col-xs-3"><%= sim_unit.unit.name %></div>
+							</div>
+						<% end %>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>
+
+<!-- turns
+		armies
+			units -->
