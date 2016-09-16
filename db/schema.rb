@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911082155) do
+ActiveRecord::Schema.define(version: 20160915091948) do
 
   create_table "armies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -96,6 +96,14 @@ ActiveRecord::Schema.define(version: 20160911082155) do
   create_table "unit_attributes_units", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "unit_id",           null: false
     t.integer "unit_attribute_id", null: false
+  end
+
+  create_table "unit_tactics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "unit_id"
+    t.integer  "tactic_id"
+    t.integer  "base_bias"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "unit_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

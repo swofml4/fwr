@@ -5,7 +5,7 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @tactic.description %>
+  <%= simple_format(@tactic.description) %>
 </p>
 
 <%= link_to 'Edit', edit_tactic_path(@tactic) %> |

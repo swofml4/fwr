@@ -10,8 +10,10 @@ class SimulationBackend
 	#				@sim_units
 
 	def initialize
+		@board_size = 24
 		@simulation = Simulation.new
 		@current_turn = @simulation.sim_turns.new(:turn_count => 0)
+		@current_board = Array.new(@board_size) {Array.new(@board_size)}
 		@simulation.save!
 		@current_turn.save!
 	end
@@ -43,6 +45,17 @@ class SimulationBackend
 	end
 
 	def deploy_armies
+		deploy_back = 0
+		deploy_front = 5
+		@current_turn.sim_armies.each do |sim_army|
+			place_position = @board_size / 2 - sim_army.sim_units.count
+			sim_army.sim_units.each do |sim_unit|
+				sim_unit.pos_x = place_position
+				sim_unit.pos_y = deploy_front
+				place_position += 1
+			end
+		end
+		@current_turn.save!
 	end
 
 	def enemies_in_range(sim_unit)
@@ -65,9 +78,16 @@ class SimulationBackend
 	# goes down the list and up the list of the units having each select their optimal assess_one_tactic
 	# it then selects the approach with the highest aggregate score and assigns each unit the respective tactic
 	def select_army_tactics
+		@current_turn.sim_armies.each do |sim_army|
+			sim_army.sim_units.each do |sim_unit|
+				select_unit_tactic(sim_unit)
+			end
+		end
 	end
 
-	def assess_unit_tactics
+	def select_unit_tactic(sim_unit)
+		#later will make it assess tactics, for now, just select the first
+
 	end
 
 	def assess_one_tactic
@@ -103,6 +123,7 @@ class SimulationBackend
 	# runs all the movement, shooting, melee, and psych checks
 	def process_turn
 		#select tactics
+		select_army_tactics()
 		#charge_the_enemy (both sides)
 		# should they reevaluate tactics or just do it once?
 		#manuver (both sides)

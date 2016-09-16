@@ -16,6 +16,7 @@ class ArmiesController < ApplicationController
   def new
     @army = Army.new
     @unit_types = UnitType.all
+    @tactics = Tactic.all
   end
 
   # GET /armies/1/edit
@@ -68,11 +69,13 @@ class ArmiesController < ApplicationController
     def set_army
       @army = Army.find(params[:id])
       @unit_types = UnitType.all
+      @tactics = Tactic.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def army_params
       params.require(:army).permit(:name, :description, {units_attributes: [:id, :name, :quality, 
-          :resilience, :strength, :hp, :cost, :sim_cost, :sim_shift, :unit_type_id, :_destroy, {:unit_attribute_ids => []}]})
+          :resilience, :strength, :hp, :cost, :sim_cost, :sim_shift, :unit_type_id, :_destroy, {:unit_attribute_ids => []},
+          {:unit_tactic_ids => []}]})
     end
 end
