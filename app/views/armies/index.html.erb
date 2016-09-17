@@ -5,17 +5,15 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @armies.each do |army| %>
       <tr>
-        <td><%= army.name %></td>
+        <td><%= link_to army.name, edit_army_path(army) %></td>
         <td><%= simple_format(army.description) %></td>
-        <td><%= link_to 'Show', army %></td>
-        <td><%= link_to 'Edit', edit_army_path(army) %></td>
         <td><%= link_to 'Destroy', army, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

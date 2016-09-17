@@ -31,7 +31,7 @@ class ArmiesController < ApplicationController
 
     respond_to do |format|
       if @army.save
-        format.html { redirect_to @army, notice: 'Army was successfully created.' }
+        format.html { redirect_to armies_path, notice:  @army.name + ' was successfully created.' }
         format.json { render :show, status: :created, location: @army }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class ArmiesController < ApplicationController
   def update
     respond_to do |format|
       if @army.update(army_params)
-        format.html { redirect_to @army, notice: 'Army was successfully updated.' }
+        format.html { redirect_to armies_path, notice: @army.name + ' was successfully updated.' }
         format.json { render :show, status: :ok, location: @army }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class ArmiesController < ApplicationController
   def destroy
     @army.destroy
     respond_to do |format|
-      format.html { redirect_to armies_url, notice: 'Army was successfully destroyed.' }
+      format.html { redirect_to armies_path, notice:  @army.name + ' was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -75,7 +75,7 @@ class ArmiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def army_params
       params.require(:army).permit(:name, :description, {units_attributes: [:id, :name, :quality, 
-          :resilience, :strength, :hp, :cost, :sim_cost, :sim_shift, :unit_type_id, :_destroy, {:unit_attribute_ids => []},
-          {:unit_tactic_ids => []}]})
+          :resilience, :strength, :hp, :cost, :sim_cost, :sim_shift, :unit_type_id, :_destroy, 
+          {:unit_attribute_ids => []}, {:unit_tactics_attributes => [:id, :base_bias, :tactic_id, :unit_id, :_destroy]}]})
     end
 end

@@ -1,0 +1,13 @@
+<fieldset class="fieldset-noborder">
+	<li class="control-group nested-fields">
+	  <div class="controls">
+	  	<% tactic_options = options_from_collection_for_select(@tactics, 'id', 'title', f.object.tactic_id) %>
+	    <%= f.label :tactic_id, "Tactic" %>
+	    <%= f.select :tactic_id, tactic_options %>
+	    
+	    <%= f.label :base_bias, "Base Tactic Bias" %>
+	    <%= f.text_field :base_bias %>
+	    <%= link_to_remove_association "Remove", f %>
+	  </div>
+	</li>
+</fieldset>

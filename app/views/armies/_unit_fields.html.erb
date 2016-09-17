@@ -1,5 +1,5 @@
 <fieldset class="fieldset-noborder">
-	<% options = options_from_collection_for_select(@unit_types, 'id', 'name') %>
+	<% options = options_from_collection_for_select(@unit_types, 'id', 'name',f.object.unit_type_id.to_s) %>
 	<div class="row">
 		<div class="col-md-2 col-sm-3 col-xs-10"><%= f.input :name %></div>
 		<div class="col-md-2 col-sm-3 col-xs-12">
@@ -23,16 +23,22 @@
 		<div class="col-md-3 col-sm-4 col-xs-4">
 			<%= link_to "+/- Equipment & Specials", 'javascript:void(0)', class: "toggle_hide" %>
 		</div>
-		<div class="col-md-3 col-sm-8 col-xs-8 hidden2">
+		<div class="col-md-3 col-sm-8 col-xs-8">
 			<%= f.association :unit_attributes, as: :check_boxes, label: 'Equipment & Special Abilities' %>
 		</div>
-		<div class="col-md-3 col-sm-4 col-xs-4">
+		<div class="col-md-2 col-sm-3 col-xs-4">
 			<%= link_to "+/- Tactics", 'javascript:void(0)', class: "toggle_hide" %>
 		</div>
-		<div class="col-md-3 col-sm-8 col-xs-8 hidden2">
-			<%= f.collection_check_boxes(:tactic_ids, Tactic.all, :id, :title) do |tactic| %>
-			  <%= tactic.label { tactic.check_box } %>
-			<% end %>
+		<div class="col-md-3 col-sm-8 col-xs-8">
+
+			<fieldset id=<%= "unit-tactics_" + f.object.id.to_s%>>
+				<ul style="list-style: none;">
+				  <%= f.fields_for :unit_tactics do |tactic| %>
+				    <%= render 'unit_tactic_fields', f: tactic %>
+				  <% end %>
+				</ul>
+				<%= link_to_add_association 'add tactic', f, :unit_tactics, 'data-association-insertion-node' => "#unit-tactics_" + f.object.id.to_s + " ul", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|unit_tactic| unit_tactic.build_tactic; unit_tactic } %>
+			</fieldset>
 		</div>
 
 	</div>
